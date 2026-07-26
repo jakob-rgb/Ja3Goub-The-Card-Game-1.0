@@ -1,0 +1,176 @@
+/* ==========================================================
+   THEME VARIABLES & FONTS
+   ========================================================== */
+:root {
+  --bg-dark: #0a0c10;
+  --menu-bg: rgba(12, 14, 18, 0.88);
+  --text-main: #e6e6e6;
+  --text-muted: #6b7280;
+  
+  /* Crimson Palette */
+  --blood-red: #dc2626;
+  --blood-red-bright: #ff1e1e;
+  --blood-red-glow: rgba(220, 38, 38, 0.45);
+
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-medium: 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  --transition-slow: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: radial-gradient(circle at center, #181114 0%, #060709 100%);
+  color: var(--text-main);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Red Ambient Glow behind the title */
+.bg-spotlight {
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, var(--blood-red-glow) 0%, rgba(0, 0, 0, 0) 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.6;
+}
+
+/* Subtle background texture */
+.bg-mesh {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: radial-gradient(rgba(220, 38, 38, 0.08) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.5;
+}
+
+/* ==========================================================
+   MENU CONTAINER & ORNATE GOTHIC TITLE
+   ========================================================== */
+.menu-wrap {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  transform-style: preserve-3d;
+  transition: transform var(--transition-medium);
+}
+
+.game-header {
+  text-align: center;
+}
+
+/* Pure Blackletter Gothic Calligraphy Style */
+.game-title {
+  font-family: 'UnifrakturMaguntia', cursive;
+  font-size: 6rem;
+  font-weight: 400;
+  letter-spacing: 2px;
+  color: #ffffff;
+  text-transform: capitalize;
+  /* Deep crimson glow layer */
+  text-shadow: 
+    0 0 15px var(--blood-red-bright),
+    0 0 40px var(--blood-red-glow),
+    0 6px 20px rgba(0, 0, 0, 0.95);
+  line-height: 1;
+}
+
+/* Hide/Remove any subtext styling if leftover in HTML */
+.game-version {
+  display: none;
+}
+
+/* ==========================================================
+   BUTTONS
+   ========================================================== */
+.menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 320px;
+}
+
+.menu-btn {
+  position: relative;
+  background: var(--menu-bg);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 16px 24px;
+  color: var(--text-main);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 4px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  transition: border-color var(--transition-medium), color var(--transition-medium), box-shadow var(--transition-medium);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+}
+
+.btn-text {
+  position: relative;
+  z-index: 5;
+  transition: transform var(--transition-medium);
+}
+
+/* Red Line Edge Accents */
+.btn-line-top, .btn-line-bottom {
+  position: absolute;
+  left: 50%;
+  width: 0%;
+  height: 2px;
+  background: var(--blood-red-bright);
+  transition: width var(--transition-slow), left var(--transition-slow);
+  box-shadow: 0 0 12px var(--blood-red-bright);
+}
+.btn-line-top { top: 0; }
+.btn-line-bottom { bottom: 0; }
+
+/* HOVER STATES */
+.menu-btn:hover {
+  border-color: var(--blood-red-bright);
+  color: #fff;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.8),
+    0 0 20px var(--blood-red-glow);
+  transition: all var(--transition-fast);
+}
+
+.menu-btn:hover .btn-line-top, 
+.menu-btn:hover .btn-line-bottom {
+  width: 100%;
+  left: 0%;
+  transition: width var(--transition-medium), left var(--transition-medium);
+}
+
+.menu-btn:hover .btn-text {
+  transform: scale(1.04);
+}
+
+/* CLICK STATE */
+.menu-btn:active {
+  transform: translateY(2px) scale(0.98);
+  border-color: var(--blood-red-bright);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.9), 0 0 12px var(--blood-red-glow);
+}
