@@ -1,12 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ja3Goub</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ja3Goub — Dark Gothic Edition</title>
+
+  <!-- Google Fonts: Pirata One & UnifrakturMaguntia (Gothic Calligraphy) + Rajdhani (UI) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=UnifrakturMaguntia&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header></header>
-    
+
+  <!-- Ambient Dark Red Background Lighting -->
+  <div class="bg-spotlight"></div>
+  <div class="bg-mesh"></div>
+
+  <!-- Central Menu Container -->
+  <div class="menu-wrap">
+    <header class="game-header">
+      <h1 class="game-title">Ja3Goub</h1>
+      <p class="game-version">V1.0 • Dark Card Game</p>
+    </header>
+
+    <div class="menu-list">
+      <button class="menu-btn" onclick="triggerAction('Match')">
+        <span class="btn-line-top"></span>
+        <span class="btn-line-bottom"></span>
+        <span class="btn-text">Quick Match</span>
+      </button>
+
+      <button class="menu-btn" onclick="triggerAction('Decks')">
+        <span class="btn-line-top"></span>
+        <span class="btn-line-bottom"></span>
+        <span class="btn-text">Deck Builder</span>
+      </button>
+
+      <button class="menu-btn" onclick="triggerAction('Lobby')">
+        <span class="btn-line-top"></span>
+        <span class="btn-line-bottom"></span>
+        <span class="btn-text">Multiplayer</span>
+      </button>
+
+      <button class="menu-btn" onclick="triggerAction('Settings')">
+        <span class="btn-line-top"></span>
+        <span class="btn-line-bottom"></span>
+        <span class="btn-text">Settings</span>
+      </button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
