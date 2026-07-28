@@ -174,3 +174,127 @@ body {
   border-color: var(--blood-red-bright);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.9), 0 0 12px var(--blood-red-glow);
 }
+/* ==========================================================
+   SETTINGS PANEL & CONTROLS
+   ========================================================== */
+.settings-container {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  width: 360px;
+  background: var(--menu-bg);
+  padding: 30px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-main);
+}
+
+/* Custom Dropdown Styling */
+.gothic-input {
+  background: #080a0d;
+  color: var(--text-main);
+  border: 1px solid rgba(220, 38, 38, 0.4);
+  padding: 8px 12px;
+  border-radius: 4px;
+  outline: none;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.gothic-input:hover,
+.gothic-input:focus {
+  border-color: var(--blood-red-bright);
+  box-shadow: 0 0 10px var(--blood-red-glow);
+}
+
+/* Custom Slider Styling */
+.gothic-slider {
+  appearance: none;
+  width: 140px;
+  height: 6px;
+  background: #181114;
+  border-radius: 3px;
+  outline: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.gothic-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--blood-red-bright);
+  cursor: pointer;
+  box-shadow: 0 0 8px var(--blood-red-bright);
+  transition: transform var(--transition-fast);
+}
+
+.gothic-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+/* Toggle Switch Styling */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 24px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #181114;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: var(--transition-medium);
+  border-radius: 24px;
+}
+
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 3px;
+  bottom: 3px;
+  background-color: var(--text-muted);
+  transition: var(--transition-medium);
+  border-radius: 50%;
+}
+
+input:checked + .toggle-slider {
+  background-color: rgba(220, 38, 38, 0.2);
+  border-color: var(--blood-red-bright);
+}
+
+input:checked + .toggle-slider:before {
+  transform: translateX(22px);
+  background-color: var(--blood-red-bright);
+  box-shadow: 0 0 8px var(--blood-red-bright);
+}
+
+.settings-container .menu-btn {
+  margin-top: 10px;
+  width: 100%;
+}
