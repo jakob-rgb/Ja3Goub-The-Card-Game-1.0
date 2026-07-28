@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ja3Goub — Settings</title>
+
+  <!-- Google Fonts: Pirata One & UnifrakturMaguntia + Rajdhani -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=UnifrakturMaguntia&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Ambient Dark Red Background Lighting -->
+  <div class="bg-spotlight"></div>
+  <div class="bg-mesh"></div>
+
+  <!-- Central Settings Container (Maintains 3D Parallax Tilt) -->
+  <div class="menu-wrap">
+    <header class="game-header">
+      <h1 class="game-title">Settings</h1>
+    </header>
+
+    <div class="settings-container">
+      
+      <!-- Language Selector -->
+      <div class="setting-item">
+        <label for="language-select">Language</label>
+        <select id="language-select" class="gothic-input">
+          <option value="en">English</option>
+          <option value="ar">العربية (Arabic)</option>
+          <option value="fr">Français</option>
+        </select>
+      </div>
+
+      <!-- Sound Effects Toggle -->
+      <div class="setting-item">
+        <label for="sfx-toggle">Sound Effects</label>
+        <label class="toggle-switch">
+          <input type="checkbox" id="sfx-toggle" checked>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+
+      <!-- Music Volume Slider -->
+      <div class="setting-item">
+        <label for="music-volume">Music Volume</label>
+        <input type="range" id="music-volume" min="0" max="100" value="80" class="gothic-slider">
+      </div>
+
+      <!-- Return Button -->
+      <button class="menu-btn" onclick="triggerAction('MainMenu')">
+        <span class="btn-line-top"></span>
+        <span class="btn-line-bottom"></span>
+        <span class="btn-text">Back to Menu</span>
+      </button>
+
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
