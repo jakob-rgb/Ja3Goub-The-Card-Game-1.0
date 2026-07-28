@@ -19,4 +19,10 @@ document.addEventListener('mouseleave', () => {
 
 function triggerAction(actionName) {
   console.log(`[Ja3Goub Engine] Executing action: ${actionName}`);
-}
+
+  if (actionName === 'Settings') {
+    window.location.href = 'settings.html';
+  } else if (actionName === 'MainMenu') {
+    window.location.href = 'index.html';
+  }
+} 
