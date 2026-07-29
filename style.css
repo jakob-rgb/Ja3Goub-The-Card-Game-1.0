@@ -12,12 +12,18 @@
   --blood-red-bright: #ff1e1e;
   --blood-red-glow: rgba(220, 38, 38, 0.45);
 
+  /* Transitions */
   --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-medium: 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   --transition-slow: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+
+  /* Reusable Effects */
+  --glass-border: 1px solid rgba(255, 255, 255, 0.08);
+  --panel-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5);
+  --glow-shadow: 0 0 10px var(--blood-red-glow);
 }
 
-* {
+*, ::before, ::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -36,24 +42,25 @@ body {
   position: relative;
 }
 
-/* Red Ambient Glow behind the title */
+/* ==========================================================
+   BACKGROUND EFFECTS
+   ========================================================== */
 .bg-spotlight {
   position: absolute;
-  width: 700px;
-  height: 700px;
-  background: radial-gradient(circle, var(--blood-red-glow) 0%, rgba(0, 0, 0, 0) 70%);
   top: 50%;
   left: 50%;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, var(--blood-red-glow) 0%, transparent 70%);
   transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: 1;
   opacity: 0.6;
 }
 
-/* Subtle background texture */
 .bg-mesh {
   position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
+  inset: 0;
   background-image: radial-gradient(rgba(220, 38, 38, 0.08) 1px, transparent 1px);
   background-size: 28px 28px;
   pointer-events: none;
@@ -79,7 +86,6 @@ body {
   text-align: center;
 }
 
-/* Pure Blackletter Gothic Calligraphy Style */
 .game-title {
   font-family: 'UnifrakturMaguntia', cursive;
   font-size: 6rem;
@@ -87,7 +93,6 @@ body {
   letter-spacing: 2px;
   color: #ffffff;
   text-transform: capitalize;
-  /* Deep crimson glow layer */
   text-shadow: 
     0 0 15px var(--blood-red-bright),
     0 0 40px var(--blood-red-glow),
@@ -95,7 +100,6 @@ body {
   line-height: 1;
 }
 
-/* Hide/Remove any subtext styling if leftover in HTML */
 .game-version {
   display: none;
 }
@@ -113,7 +117,7 @@ body {
 .menu-btn {
   position: relative;
   background: var(--menu-bg);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: var(--glass-border);
   padding: 16px 24px;
   color: var(--text-main);
   font-size: 1.15rem;
@@ -124,18 +128,20 @@ body {
   border-radius: 4px;
   overflow: hidden;
   backdrop-filter: blur(10px);
-  transition: border-color var(--transition-medium), color var(--transition-medium), box-shadow var(--transition-medium);
+  transition: border-color var(--transition-medium), color var(--transition-medium), box-shadow var(--transition-medium), transform var(--transition-fast);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
 }
 
 .btn-text {
   position: relative;
   z-index: 5;
+  display: block;
   transition: transform var(--transition-medium);
 }
 
 /* Red Line Edge Accents */
-.btn-line-top, .btn-line-bottom {
+.btn-line-top, 
+.btn-line-bottom {
   position: absolute;
   left: 50%;
   width: 0%;
@@ -144,23 +150,22 @@ body {
   transition: width var(--transition-slow), left var(--transition-slow);
   box-shadow: 0 0 12px var(--blood-red-bright);
 }
+
 .btn-line-top { top: 0; }
 .btn-line-bottom { bottom: 0; }
 
-/* HOVER STATES */
+/* Button States */
 .menu-btn:hover {
   border-color: var(--blood-red-bright);
   color: #fff;
-  box-shadow: 
-    0 10px 30px rgba(0, 0, 0, 0.8),
-    0 0 20px var(--blood-red-glow);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px var(--blood-red-glow);
   transition: all var(--transition-fast);
 }
 
 .menu-btn:hover .btn-line-top, 
 .menu-btn:hover .btn-line-bottom {
   width: 100%;
-  left: 0%;
+  left: 0;
   transition: width var(--transition-medium), left var(--transition-medium);
 }
 
@@ -168,12 +173,12 @@ body {
   transform: scale(1.04);
 }
 
-/* CLICK STATE */
 .menu-btn:active {
   transform: translateY(2px) scale(0.98);
   border-color: var(--blood-red-bright);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.9), 0 0 12px var(--blood-red-glow);
 }
+
 /* ==========================================================
    SETTINGS PANEL & CONTROLS
    ========================================================== */
@@ -185,9 +190,14 @@ body {
   background: var(--menu-bg);
   padding: 30px;
   border-radius: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5);
+  border: var(--glass-border);
+  box-shadow: var(--panel-shadow);
   backdrop-filter: blur(10px);
+}
+
+.settings-container .menu-btn {
+  margin-top: 10px;
+  width: 100%;
 }
 
 .setting-item {
@@ -201,7 +211,7 @@ body {
   color: var(--text-main);
 }
 
-/* Custom Dropdown Styling */
+/* Custom Dropdown */
 .gothic-input {
   background: #080a0d;
   color: var(--text-main);
@@ -218,10 +228,10 @@ body {
 .gothic-input:hover,
 .gothic-input:focus {
   border-color: var(--blood-red-bright);
-  box-shadow: 0 0 10px var(--blood-red-glow);
+  box-shadow: var(--glow-shadow);
 }
 
-/* Custom Slider Styling */
+/* Custom Slider */
 .gothic-slider {
   appearance: none;
   width: 140px;
@@ -232,10 +242,12 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.gothic-slider::-webkit-slider-thumb {
+.gothic-slider::-webkit-slider-thumb,
+.gothic-slider::-moz-range-thumb {
   appearance: none;
   width: 16px;
   height: 16px;
+  border: none;
   border-radius: 50%;
   background: var(--blood-red-bright);
   cursor: pointer;
@@ -243,11 +255,12 @@ body {
   transition: transform var(--transition-fast);
 }
 
-.gothic-slider::-webkit-slider-thumb:hover {
+.gothic-slider::-webkit-slider-thumb:hover,
+.gothic-slider::-moz-range-thumb:hover {
   transform: scale(1.2);
 }
 
-/* Toggle Switch Styling */
+/* Toggle Switch */
 .toggle-switch {
   position: relative;
   display: inline-block;
@@ -264,14 +277,14 @@ body {
 .toggle-slider {
   position: absolute;
   cursor: pointer;
-  top: 0; left: 0; right: 0; bottom: 0;
+  inset: 0;
   background-color: #181114;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: var(--transition-medium);
+  transition: background-color var(--transition-medium), border-color var(--transition-medium);
   border-radius: 24px;
 }
 
-.toggle-slider:before {
+.toggle-slider::before {
   position: absolute;
   content: "";
   height: 16px;
@@ -279,7 +292,7 @@ body {
   left: 3px;
   bottom: 3px;
   background-color: var(--text-muted);
-  transition: var(--transition-medium);
+  transition: transform var(--transition-medium), background-color var(--transition-medium), box-shadow var(--transition-medium);
   border-radius: 50%;
 }
 
@@ -288,13 +301,8 @@ input:checked + .toggle-slider {
   border-color: var(--blood-red-bright);
 }
 
-input:checked + .toggle-slider:before {
+input:checked + .toggle-slider::before {
   transform: translateX(22px);
   background-color: var(--blood-red-bright);
   box-shadow: 0 0 8px var(--blood-red-bright);
-}
-
-.settings-container .menu-btn {
-  margin-top: 10px;
-  width: 100%;
 }
